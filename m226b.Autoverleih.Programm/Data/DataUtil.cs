@@ -21,6 +21,12 @@ namespace m226b.Autoverleih.Programm.Data
             return repo;
         }
 
+        public static Repository GetInitialData()
+        {
+            DataInit();
+            return ReadData<Repository>(@"C:\VS-Workspace\M226\Data\repository.txt");
+        }
+
         public static T ReadData<T>(string path) where T : class
         {
             try
@@ -95,7 +101,7 @@ namespace m226b.Autoverleih.Programm.Data
                 Condition = Condition.NeedsExternalRepair,
                 HasBeenChecked = true,
                 IsAvailable = true,
-                IsWashed = false,
+                IsWashed = true,
                 HasTrailer = true,
                 Height = 300,
                 MaxWeightLoaded = 20000,

@@ -106,6 +106,7 @@ namespace m226b.Autoverleih.Programm.Classes
                 }
                 else throw (new DatesOverlapException("This vehicle is already reserved for this period"));
             }
+            else throw (new InvalidOperationException("You have to get an employee"));
         }
 
         public void PayRental(RentContract rent, Repository repo, bool isCash, [Optional] int amount)
