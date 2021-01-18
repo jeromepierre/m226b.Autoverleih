@@ -56,35 +56,28 @@ namespace m226b.Autoverleih.Programm.Data
             }
             Console.WriteLine($"Rented vehicles: {count}, Earned money: {(float)money / 100} CHF");
         }
+
         public void GetEarningsForLastWeek()
         {
             var contracts = Contracts.Where(ct => ct.RentalDay.Day <= DateTime.Now.AddDays(-7).Day).ToList();
-            int count = 0;
-            int money = 0;
-            foreach (var ct in contracts)
-            {
-                count++;
-                money += int.Parse(ct.GetPrice());
-            }
-            Console.WriteLine($"Rented vehicles: {count}, Earned money: {(float)money / 100} CHF");
+            PrintEarnings(contracts);
+
         }
 
         public void GetEarningsForLastMonth()
         {
             var contracts = Contracts.Where(ct => ct.RentalDay.Month == DateTime.Now.AddMonths(-1).Month).ToList();
-            int count = 0;
-            int money = 0;
-            foreach (var ct in contracts)
-            {
-                count++;
-                money += int.Parse(ct.GetPrice());
-            }
-            Console.WriteLine($"Rented vehicles: {count}, Earned money: {(float)money / 100} CHF");
+            PrintEarnings(contracts);
         }
 
         public void GetEarningsForLastYear()
         {
             var contracts = Contracts.Where(ct => ct.RentalDay.Year == DateTime.Now.AddYears(-1).Year).ToList();
+            PrintEarnings(contracts);
+        }
+
+        private void PrintEarnings(List<RentContract> contracts)
+        {
             int count = 0;
             int money = 0;
             foreach (var ct in contracts)
